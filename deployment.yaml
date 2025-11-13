@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javi-nginx
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: javi-nginx
+  template:
+    metadata:
+    labels:
+    app: javi-nginx
+    spec:
+    containers:
+      - name: nginx
+    image: nginx:latest
+    ports:
+      - containerPort:80

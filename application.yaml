@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Application
+metadata:
+  name: javi-nginx-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Javi-Jmnz/argocd
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {} # auto sync on commit
