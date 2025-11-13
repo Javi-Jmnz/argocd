@@ -15,20 +15,30 @@ jobs:
 
       - name: Update image tag
         run: |
-          sed -i.bak "s|image: nginx:.*|image: nginx:${{ github.sha }}|" deployment.yaml
-          rm deployment.yaml.bak
-          echo "Updated deployment.yaml with new image tag: ${{ github.sha }}"
+          sed -i.bak "s|image: nginx:.*|image: nginx:${{ github.sha }}|" k8s/deployment.yaml
+          rm k8s/deployment.yaml.bak
+          echo "✅ Updated k8s/deployment.yaml with new image tag: ${{ github.sha }}"
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deployment.yaml
+          git add k8s/deployment.yaml
 
           # Solo hacer commit si hay cambios reales
           if ! git diff --cached --quiet; then
             git commit -m "Update image to ${{ github.sha }}"
             git push
+            echo "✅ Changes committed and pushed."
           else
-            echo "No changes to commit."
+            echo "ℹ️ No changes to commit."
           fi
+
+      - name: Notify ArgoCD to sync
+        env:
+          ARGOCD_WEBHOOK_URL: "https://localhost:8081/api/webhook"
+        run: |
+          echo "🔔 Notifying ArgoCD to sync..."
+          curl -X POST -k $ARGOCD_WEBHOOK_URL \
+            -H "Content-Type: application/json" \
+            -d '{"ref": "refs/heads/main"}'
