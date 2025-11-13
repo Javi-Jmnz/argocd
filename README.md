@@ -94,7 +94,7 @@ kubectl apply -f application.yaml
 To make the Pods be also deployed from Git run:
 
 ```bash
-kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=javi-jmnz --docker-password=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 --namespace=default
+kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=javi-jmnz --docker-password=<CONTAINER REGISTRY ACCESS Token> --namespace=default
 ```
 
 Has to reply:
