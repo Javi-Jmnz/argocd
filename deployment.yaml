@@ -10,11 +10,11 @@ spec:
       app: javi-nginx
   template:
     metadata:
-    labels:
-    app: javi-nginx
+      labels:
+        app: javi-nginx
     spec:
-    containers:
-      - name: nginx
-    image: nginx:latest
-    ports:
-      - containerPort:80
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
