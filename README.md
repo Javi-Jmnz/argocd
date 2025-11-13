@@ -3,7 +3,7 @@
 This repository is to trigger ArgoCD when any changes are commited to this repository.
 
 Argo is running on my local but pointing to this Git repo from the Application.yaml in line:
-repoURL: https://github.com/Javi-Jmnz/argocd
+repoURL: https://github.com/javi-jmnz/argocd
 
 ## Installation
 
