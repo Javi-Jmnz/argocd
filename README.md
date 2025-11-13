@@ -90,3 +90,28 @@ To apply the changes from your application.yaml run:
 ```bash
 kubectl apply -f application.yaml
 ```
+
+To make the Pods be also deployed from Git run:
+
+```bash
+kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=javi-jmnz --docker-password=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 --namespace=default
+```
+
+Has to reply:
+
+```bash
+secret/ghcr-secret created
+```
+
+To see the aplication running in argo local run:
+
+```bash
+argocd app list
+```
+
+Reply:
+
+```bash
+NAME                   CLUSTER                         NAMESPACE  PROJECT  STATUS     HEALTH    SYNCPOLICY  CONDITIONS  REPO                                 PATH  TARGET
+argocd/javi-nginx-app  https://kubernetes.default.svc  default    default  OutOfSync  Degraded  Auto        <none>      https://github.com/javi-jmnz/argocd  .     HEAD
+```
