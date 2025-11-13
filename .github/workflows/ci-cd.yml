@@ -33,12 +33,4 @@ jobs:
           else
             echo "ℹ️ No changes to commit."
           fi
-
-      - name: Notify ArgoCD to sync
-        env:
-          ARGOCD_WEBHOOK_URL: "https://localhost:8081/api/webhook"
-        run: |
-          echo "🔔 Notifying ArgoCD to sync..."
-          curl -X POST -k $ARGOCD_WEBHOOK_URL \
-            -H "Content-Type: application/json" \
-            -d '{"ref": "refs/heads/main"}'
+          
