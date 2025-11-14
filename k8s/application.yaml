@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/javi-jmnz/argocd
-    path: k8s # 👈 OJO: aquí usa tu nueva carpeta
+    path: k8s # aquí usa tu nueva carpeta
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
